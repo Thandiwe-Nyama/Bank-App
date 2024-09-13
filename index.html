@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Bank App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Role Selection -->
+        <div id="role-selection" class="card">
+            <h2>Select Role</h2>
+            <button onclick="showLogin('user')">User Login</button>
+            <button onclick="showLogin('admin')">Admin Login</button>
+        </div>
+
+        <!-- User Login -->
+        <div id="user-login" class="card hidden">
+            <h2>User Login</h2>
+            <input type="text" id="username" placeholder="Enter Username">
+            <input type="password" id="password" placeholder="Enter Password">
+            <button onclick="login('user')">Login</button>
+            <p id="login-error"></p>
+            <button onclick="showSection('role-selection')">Back</button>
+        </div>
+
+        <!-- Admin Login -->
+        <div id="admin-login" class="card hidden">
+            <h2>Admin Login</h2>
+            <input type="text" id="admin-username" placeholder="Enter Admin Username">
+            <input type="password" id="admin-password" placeholder="Enter Admin Password">
+            <button onclick="login('admin')">Login</button>
+            <p id="admin-login-error"></p>
+            <button onclick="showSection('role-selection')">Back</button>
+        </div>
+
+        <!-- User Dashboard -->
+        <div id="user-dashboard" class="card hidden">
+            <h2>Welcome, <span id="user-name"></span></h2>
+            <p>Current Balance: R<span id="balance">0</span></p>
+            <button onclick="showSection('deposit')">Deposit</button>
+            <button onclick="showSection('withdraw')">Withdraw</button>
+            <button onclick="showSection('transactions')">Transaction History</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="admin-dashboard" class="card hidden">
+            <h2>Admin Dashboard</h2>
+            <button onclick="showSection('manage-users')">Manage Users</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+        <!-- Deposit Section -->
+        <div id="deposit" class="card hidden">
+            <h2>Deposit Money</h2>
+            <input type="number" id="deposit-amount" placeholder="Enter amount">
+            <button onclick="deposit()">Deposit</button>
+            <button onclick="showSection('user-dashboard')">Back</button>
+            <p id="deposit-error"></p>
+        </div>
+
+        <!-- Withdraw Section -->
+        <div id="withdraw" class="card hidden">
+            <h2>Withdraw Money</h2>
+            <input type="number" id="withdraw-amount" placeholder="Enter amount">
+            <button onclick="withdraw()">Withdraw</button>
+            <button onclick="showSection('user-dashboard')">Back</button>
+            <p id="withdraw-error"></p>
+        </div>
+
+        <!-- Transactions Section -->
+        <div id="transactions" class="card hidden">
+            <h2>Transaction History</h2>
+            <ul id="transaction-list"></ul>
+            <button onclick="showSection('user-dashboard')">Back</button>
+        </div>
+
+        <!-- Admin Manage Users Section -->
+        <div id="manage-users" class="card hidden">
+            <h2>Manage Users</h2>
+            <ul id="user-list">
+                <li>User: <span id="user-name-list"></span> | Balance: R<span id="user-balance-list"></span></li>
+            </ul>
+            <button onclick="showSection('admin-dashboard')">Back</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
